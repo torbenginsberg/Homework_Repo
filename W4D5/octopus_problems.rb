@@ -1,3 +1,5 @@
+require "byebug"
+
 def sluggish_octopus(arr)
     curr_count = 0
     longest = ""
@@ -25,8 +27,7 @@ class Array
         sorted_left = l.dominant_octopus(&prc)
         sorted_right = r.dominant_octopus(&prc)
 
-        sorted_all = Array.merge(sorted_left, sorted_right, &prc)
-        sorted_all[-1]
+        sorted = Array.merge(sorted_left, sorted_right, &prc)
     end
 
     private
