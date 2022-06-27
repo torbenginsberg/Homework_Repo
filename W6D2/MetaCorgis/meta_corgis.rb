@@ -110,7 +110,16 @@ class MetaCorgiSnacks
   end
 
   def method_missing(name, *args)
-    # Your code goes here...
+    possible_method_names = ["bone", "kibble", "treat"]
+    if possible_method_names.include?(name.to_s)
+      info = @snack_box.send("get_#{name}_info", @box_id)
+      tastiness = @snack_box.send("get_#{name}_tastiness", @box_id)
+      name = name.to_s.split('_').map(&:capitalize).join(' ')
+      result = "#{name}: #{info}: #{tastiness} "
+      tastiness > 30 ? "* #{result}" : result
+    else
+      raise "Method doesn't exist."
+    end
   end
 
 
