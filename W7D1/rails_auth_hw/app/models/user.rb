@@ -22,7 +22,7 @@ class User < ApplicationRecord
         if u && BCrypt::Password.new(u.password_digest).is_password?(password)
             return u
         else
-            raise "User with these credentials does not exist"
+            nil
         end
     end
 
